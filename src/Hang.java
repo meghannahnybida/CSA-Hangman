@@ -10,48 +10,47 @@ public class Hang
 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String[] wordBank = {"corona", "virus", "COVID", };
+        String[] wordBank = {"corona", "virus", "covid", "quarantine", "wuhan" };
         Path gameScore = Paths.get("/Users/meghannahnybida/Desktop/CSA/Hangman/src/GameInfo");
         String delimiter = "|";
         FileChannel fcIn = null;
         String userEntry;
         int missesCount = 0;
         char[] misses = new char[6];
-        boolean letterGuessed = false;
+        boolean letterGuessed;
         boolean wordGuessed = false;
-        String choice = "";
         WhoWon count = new WhoWon();
 
         String randomWord = wordBank[(int) (Math.random() * wordBank.length)];
         char[] wordToGuess = new char[randomWord.length()];
-        for (int i = 0; i < randomWord.length(); i++) {
+        for(int i = 0; i < randomWord.length(); i++){
             wordToGuess[i] = '_';
         }
 
-            while (!wordGuessed && missesCount < 5) {
+            while(!wordGuessed && missesCount < 5){
                 System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 System.out.println("You have " + (5 - missesCount) + " misses left.");
                 System.out.print("Unknown Word:\t");
-                for (int i = 0; i < randomWord.length(); i++) {
+                for(int i = 0; i < randomWord.length(); i++){
                     System.out.print(wordToGuess[i] + " ");
                 }
 
                 System.out.print("\nLetters Missed: ");
 
-                for (int i = 0; i < misses.length; i++) {
+                for(int i = 0; i < misses.length; i++){
                     System.out.print(misses[i] + " ");
                 }
                 System.out.print("\nGuess a Letter: ");
                 userEntry = input.next();
                 letterGuessed = false;
 
-                for (int i = 0; i < randomWord.length(); i++) {
-                    if (userEntry.charAt(0) == randomWord.charAt(i)) {
+                for(int i = 0; i < randomWord.length(); i++){
+                    if(userEntry.charAt(0) == randomWord.charAt(i)){
                         wordToGuess[i] = randomWord.charAt(i);
                         letterGuessed = true;
                     }
                 }
-                if (!letterGuessed) {
+                if(!letterGuessed){
                     missesCount++;
                     count.setLettersMissed(count.getLettersMissed() + 1);
                     misses[missesCount] = userEntry.charAt(0);
@@ -59,27 +58,28 @@ public class Hang
                 }
 
                 int hidden_count = 0;
-                for (int i = 0; i < randomWord.length(); i++) {
-                    if ('_' == wordToGuess[i])
+                for(int i = 0; i < randomWord.length(); i++){
+                    if('_' == wordToGuess[i])
                         hidden_count++;
                 }
-                if (hidden_count > 0)
+                if(hidden_count > 0)
                     wordGuessed = false;
                 else
                     wordGuessed = true;
             }
-            if (wordGuessed == false) {
+            if(wordGuessed == false){
                 System.out.println( "------------------------------------" );
                 System.out.println("Game Result: You Lost!");
                 gameStats(randomWord, missesCount, misses);
                 count.setCompWin(count.getCompWin() + 1);
-            } else {
+            }
+            else{
                 System.out.println( "------------------------------------" );
                 System.out.println("Game Result: You Won!");
                 gameStats(randomWord, missesCount, misses);
                 count.setUserWin(count.getUserWin() + 1);
             }
-        try {
+        try{
             fcIn = (FileChannel) Files.newByteChannel(gameScore, CREATE, WRITE);
             String s = "You: " + count.getUserWin() + "  " + delimiter + "  Computer: " + count.getCompWin() + "  " + delimiter + "  # of Letters Missed: " + count.getLettersMissed();
             byte data[] = s.getBytes();
@@ -91,17 +91,17 @@ public class Hang
     }
 
     public static void gameStats(String randomWord, int missesCount, char[] misses){
-        System.out.println( "Misses remaining: " + (5 - missesCount));
+        System.out.println("Misses remaining: " + (5 - missesCount));
         System.out.print( "The word was:\t" + randomWord );
         System.out.print("\nYou missed the letters: ");
-        for( int i = 0; i < misses.length; i++ ){
+        for(int i = 0; i < misses.length; i++){
             System.out.print( misses[i] + " ");
         }
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
 
     public static void pictures(int missesCount){
-        if (missesCount == 1) {
+        if (missesCount == 1){
             System.out.println("Wrong, guess again >>");
             System.out.println("   ____________");
             System.out.println("   |          _|_");
