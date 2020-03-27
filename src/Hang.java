@@ -21,9 +21,9 @@ public class Hang
         boolean wordGuessed = false;
         WhoWon count = new WhoWon();
 
-        String randomWord = wordBank[(int) (Math.random() * wordBank.length)];
-        char[] wordToGuess = new char[randomWord.length()];
-        for(int i = 0; i < randomWord.length(); i++){
+        String randomWord = wordBank[(int) (Math.random() * wordBank.length)]; //chooses a random word from the word bank
+        char[] wordToGuess = new char[randomWord.length()]; //turns the random word into a char array
+        for(int i = 0; i < randomWord.length(); i++){ //fills the random word with underscores instead of letters
             wordToGuess[i] = '_';
         }
 
@@ -79,17 +79,20 @@ public class Hang
                 gameStats(randomWord, missesCount, misses);
                 count.setUserWin(count.getUserWin() + 1);
             }
+            //Write to the text file
         try{
             fcIn = (FileChannel) Files.newByteChannel(gameScore, CREATE, WRITE);
             String s = "You: " + count.getUserWin() + "  " + delimiter + "  Computer: " + count.getCompWin() + "  " + delimiter + "  # of Letters Missed: " + count.getLettersMissed();
             byte data[] = s.getBytes();
             ByteBuffer buffer = ByteBuffer.wrap(data);
             fcIn.write(buffer);
+            //Catch the error
         } catch(Exception e){
             System.out.println("Error message: " + e);
         }
     }
 
+    //Displays the stats of the game
     public static void gameStats(String randomWord, int missesCount, char[] misses){
         System.out.println("Misses remaining: " + (5 - missesCount));
         System.out.print( "The word was:\t" + randomWord );
@@ -100,6 +103,7 @@ public class Hang
         System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
 
+    //Top notch graphics
     public static void pictures(int missesCount){
         if (missesCount == 1){
             System.out.println("Wrong, guess again >>");
