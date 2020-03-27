@@ -10,7 +10,7 @@ public class Hang
 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String[] wordBank = {"corona", "virus"};
+        String[] wordBank = {"corona", "virus", "COVID", };
         Path gameScore = Paths.get("/Users/meghannahnybida/Desktop/CSA/Hangman/src/GameInfo");
         String delimiter = "|";
         FileChannel fcIn = null;
@@ -97,6 +97,7 @@ public class Hang
         for( int i = 0; i < misses.length; i++ ){
             System.out.print( misses[i] + " ");
         }
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
 
     public static void pictures(int missesCount){
