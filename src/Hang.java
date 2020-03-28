@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 
 public class Hang
 {
+    public static int missesCount = 0;
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String[] wordBank = {"corona", "virus", "covid", "quarantine", "wuhan" };
@@ -15,7 +17,6 @@ public class Hang
         String delimiter = "|";
         FileChannel fcIn = null;
         String userEntry;
-        int missesCount = 0;
         char[] misses = new char[6];
         boolean letterGuessed;
         boolean wordGuessed = false;
@@ -54,7 +55,7 @@ public class Hang
                     missesCount++;
                     count.setLettersMissed(count.getLettersMissed() + 1);
                     misses[missesCount] = userEntry.charAt(0);
-                    pictures(missesCount);
+                    Graphics.pictures(missesCount);
                 }
 
                 int hidden_count = 0;
@@ -101,69 +102,5 @@ public class Hang
             System.out.print( misses[i] + " ");
         }
         System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-    }
-
-    //Top notch graphics
-    public static void pictures(int missesCount){
-        if (missesCount == 1){
-            System.out.println("Wrong, guess again >>");
-            System.out.println("   ____________");
-            System.out.println("   |          _|_");
-            System.out.println("   |             ");
-            System.out.println("   |             ");
-            System.out.println("   |             ");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("___|___");
-        }
-        if (missesCount == 2) {
-            System.out.println("Wrong, guess again >>");
-            System.out.println("   ____________");
-            System.out.println("   |          _|_");
-            System.out.println("   |         /   \\");
-            System.out.println("   |        |     |");
-            System.out.println("   |         \\_ _/");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("___|___");
-        }
-        if (missesCount == 3) {
-            System.out.println("Wrong, guess again >>");
-            System.out.println("   ____________");
-            System.out.println("   |          _|_");
-            System.out.println("   |         /   \\");
-            System.out.println("   |        |     |");
-            System.out.println("   |         \\_ _/");
-            System.out.println("   |           |");
-            System.out.println("   |           |");
-            System.out.println("   |");
-            System.out.println("___|___");
-        }
-        if (missesCount == 4) {
-            System.out.println("Wrong, guess again >>");
-            System.out.println("   ____________");
-            System.out.println("   |          _|_");
-            System.out.println("   |         /   \\");
-            System.out.println("   |        |     |");
-            System.out.println("   |         \\_ _/");
-            System.out.println("   |           |");
-            System.out.println("   |           |");
-            System.out.println("   |          / \\ ");
-            System.out.println("___|___      /   \\");
-        }
-        if (missesCount == 5) {
-            System.out.println("Wrong, guess again >>");
-            System.out.println("   ____________");
-            System.out.println("   |          _|_");
-            System.out.println("   |         /   \\");
-            System.out.println("   |        | x x |");
-            System.out.println("   |         \\_ _/");
-            System.out.println("   |          _|_");
-            System.out.println("   |         / | \\");
-            System.out.println("   |          / \\ ");
-            System.out.println("___|___      /   \\");
-        }
     }
 }
