@@ -37,7 +37,6 @@ public class Hang
                 }
 
                 System.out.print("\nLetters Missed: ");
-
                 for(int i = 0; i < misses.length; i++){
                     System.out.print(misses[i] + " ");
                 }
@@ -58,12 +57,12 @@ public class Hang
                     Graphics.pictures(missesCount);
                 }
 
-                int hidden_count = 0;
+                int underscores = 0;
                 for(int i = 0; i < randomWord.length(); i++){
                     if('_' == wordToGuess[i])
-                        hidden_count++;
+                        underscores++;
                 }
-                if(hidden_count > 0)
+                if(underscores > 0)
                     wordGuessed = false;
                 else
                     wordGuessed = true;
