@@ -9,13 +9,13 @@ and how many letters you missed to the text file GameInfo. </ul>
  
                  ____________  
                 |          _|_
-                |         /   \\
+                |         /   \
                 |        | x x |
-                |         \\_ _/
-                |          _|_
-                |         / | \\
-                |          / \\ 
-             ___|___      /   \\
+                |         \_ _/
+                |         __|__
+                |           | 
+                |          / \ 
+             ___|___      /   \
 <ul> Avoid this ^</ul>
 <p>Due: March 27, 2020</p>
 <p>- Meghan Nahnybida</p>
